@@ -48,12 +48,12 @@ import java.util.zip.Inflater;
         view = lInflater.inflate(R.layout.list_adapter,parent,false);
         }
         ItemLst itm = getItemLst(position);
-        ((TextView) view.findViewById(R.id.count_item)).setText(itm.count);
+        ((TextView) view.findViewById(R.id.count_item)).setText(Integer.toString(itm.count));
         ((TextView) view.findViewById(R.id.item)).setText(itm.item_name);
-        InfLst inf = getInfLst(position);
-        ((TextView) view.findViewById(R.id.name_add)).setText(inf.add_name);
-        ((TextView) view.findViewById(R.id.date_add)).setText(inf.add_date);
-        return null;
+      //  InfLst inf = getInfLst(position);
+      //  ((TextView) view.findViewById(R.id.name_add)).setText(inf.add_name);
+      //  ((TextView) view.findViewById(R.id.date_add)).setText(inf.add_date);
+       return view;
     }
     ItemLst getItemLst(int position) {
         return ((ItemLst) getItem(position));
@@ -66,7 +66,6 @@ import java.util.zip.Inflater;
     ArrayList<ItemLst> getBox() {
         ArrayList<ItemLst> box = new ArrayList<ItemLst>();
         for (ItemLst itm : objects) {
-            // если в корзине
             box.add(itm);
         }
         return box;

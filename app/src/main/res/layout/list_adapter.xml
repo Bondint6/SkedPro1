@@ -40,7 +40,5 @@
         android:layout_alignBaseline="@+id/date_add"
         android:layout_alignBottom="@+id/date_add"
         android:layout_alignRight="@+id/item"
-        android:layout_alignEnd="@+id/item"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp" />
+        android:layout_alignEnd="@+id/item" />
 </RelativeLayout>
