@@ -7,10 +7,12 @@ import android.widget.ListView;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends Activity {
 
     ArrayList<ItemLst> items = new ArrayList<ItemLst>();
+    ArrayList<InfLst> infs = new ArrayList<InfLst>();
     ShopListAdapter shopListAdapter;
 
     @Override
@@ -18,7 +20,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // создаем адаптер
-        fillData();
+        fillItems();
+
         shopListAdapter = new ShopListAdapter(this, items);
         // настраиваем список
         ListView shop_list = (ListView) findViewById(R.id.shop_list);
@@ -27,10 +30,12 @@ public class MainActivity extends Activity {
     }
 
     // генерируем данные для адаптера
-    void fillData() {
+    void fillItems() {
         for (int i = 1; i <= 20; i++) {
-            items.add(new ItemLst("ItemLst "  + i, i * 10));
+            items.add(new ItemLst("ItemLst "  + i,"11/11/11 + " + i ,"Bondint "+i , i * 10));
 
-        }
+         }
     }
+
+
 }

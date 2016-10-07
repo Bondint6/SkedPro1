@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
@@ -18,6 +19,7 @@ import java.util.zip.Inflater;
     Context ctx;
     LayoutInflater lInflater;
     ArrayList<ItemLst> objects;
+
 
     ShopListAdapter(Context context, ArrayList<ItemLst> items)
     {
@@ -50,9 +52,8 @@ import java.util.zip.Inflater;
         ItemLst itm = getItemLst(position);
         ((TextView) view.findViewById(R.id.count_item)).setText(Integer.toString(itm.count));
         ((TextView) view.findViewById(R.id.item)).setText(itm.item_name);
-      //  InfLst inf = getInfLst(position);
-      //  ((TextView) view.findViewById(R.id.name_add)).setText(inf.add_name);
-      //  ((TextView) view.findViewById(R.id.date_add)).setText(inf.add_date);
+        ((TextView) view.findViewById(R.id.name_add)).setText(itm.add_name);
+        ((TextView) view.findViewById(R.id.date_add)).setText(itm.add_date);
        return view;
     }
     ItemLst getItemLst(int position) {
@@ -62,6 +63,8 @@ import java.util.zip.Inflater;
     InfLst getInfLst(int position) {
         return ((InfLst) getItem(position));
     }
+
+
 
     ArrayList<ItemLst> getBox() {
         ArrayList<ItemLst> box = new ArrayList<ItemLst>();

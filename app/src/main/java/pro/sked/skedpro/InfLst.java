@@ -9,7 +9,7 @@ public class InfLst {
     String add_date;
 InfLst(String _add_name, String _add_date) {
     add_name = _add_name;
-    add_date=_add_name;
+    add_date=_add_date;
 }
 }
 
