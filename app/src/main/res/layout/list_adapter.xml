@@ -38,7 +38,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/name_add"
         android:layout_alignBaseline="@+id/date_add"
-        android:layout_alignBottom="@+id/date_add"
-        android:layout_alignRight="@+id/item"
-        android:layout_alignEnd="@+id/item" />
+        android:layout_alignBottom="@+id/date_add" />
 </RelativeLayout>

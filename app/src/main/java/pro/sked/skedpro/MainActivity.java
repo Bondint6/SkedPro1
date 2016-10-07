@@ -12,8 +12,7 @@ import java.util.Date;
 public class MainActivity extends Activity {
 
     ArrayList<ItemLst> items = new ArrayList<ItemLst>();
-    ArrayList<InfLst> infs = new ArrayList<InfLst>();
-    ShopListAdapter shopListAdapter;
+   ShopListAdapter shopListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class MainActivity extends Activity {
     // генерируем данные для адаптера
     void fillItems() {
         for (int i = 1; i <= 20; i++) {
-            items.add(new ItemLst("ItemLst "  + i,"11/11/11 + " + i ,"Bondint "+i , i * 10));
+            items.add(new ItemLst("Item "  + i,"11/11/11 + " + i ,"Bondint "+i , i * 10));
 
          }
     }

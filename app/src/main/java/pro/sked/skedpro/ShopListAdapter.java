@@ -60,9 +60,7 @@ import java.util.zip.Inflater;
         return ((ItemLst) getItem(position));
     }
 
-    InfLst getInfLst(int position) {
-        return ((InfLst) getItem(position));
-    }
+
 
 
 
