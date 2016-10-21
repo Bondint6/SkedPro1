@@ -30,12 +30,13 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String Pass = getIntent().getStringExtra("name");
 
-        // создаем адаптер
+        // create adapter
         fillItems();
 
         shopListAdapter = new ShopListAdapter(this, items);
-        // настраиваем список
+        // set adapter
         ListView shop_list = (ListView) findViewById(R.id.shop_list);
         shop_list.setAdapter(shopListAdapter);
 
@@ -43,7 +44,7 @@ public class MainActivity extends Activity {
 
 
 
-    // генерируем данные для адаптера
+    // generic data for adapter
     void fillItems() {
         for (int i = 1; i <= 20; i++) {
             items.add(new ItemLst("Item "  + i, d.toString() ,"Bondint "+i , i * 10));
