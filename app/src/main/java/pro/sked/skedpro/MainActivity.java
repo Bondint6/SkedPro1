@@ -22,15 +22,16 @@ import java.util.Date;
 
 public class MainActivity extends Activity {
 
+
     ArrayList<ItemLst> items = new ArrayList<ItemLst>();
    ShopListAdapter shopListAdapter;
     Date d = new Date();
-
+    String Pass;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String Pass = getIntent().getStringExtra("name");
+        Pass = getIntent().getStringExtra("Login");
 
         // create adapter
         fillItems();
@@ -46,8 +47,9 @@ public class MainActivity extends Activity {
 
     // generic data for adapter
     void fillItems() {
+
         for (int i = 1; i <= 20; i++) {
-            items.add(new ItemLst("Item "  + i, d.toString() ,"Bondint "+i , i * 10));
+            items.add(new ItemLst("Item "  + i, d.toString() ,Pass , i * 10));
 
          }
     }
