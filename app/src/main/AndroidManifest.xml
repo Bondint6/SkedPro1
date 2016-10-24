@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pro.sked.skedpro">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -25,7 +26,7 @@
 
         <activity
             android:name=".AddUser"
-            android:label="AddItem" >
+            android:label="AddUser" >
         </activity>
 
         <meta-data
@@ -33,6 +34,9 @@
             android:value="@integer/google_play_services_version" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
+
+
+
 
 </manifest>
