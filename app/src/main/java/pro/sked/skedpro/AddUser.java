@@ -66,7 +66,7 @@ public class AddUser extends Activity {
             public void onClick(View v) {
 
                 Call<RespMessage> call = intf.CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
-                call.enqueue(new Callback<RespMessage>() {
+                call.enqueue(new Callback <RespMessage>() {
                     @Override
                     public void onFailure(Call<RespMessage> call, Throwable t) {
 
@@ -76,14 +76,15 @@ public class AddUser extends Activity {
                     public void onResponse(Call<RespMessage> call, Response<RespMessage> response) {
 
 
+
+                        System.out.println(" "+Respmessage.message+" ");  // REsponse  response.body().toString() -> pro.sked.skedpro.RespMessage@53701324
                         Context context = getApplicationContext();
-                        CharSequence text = Respmessage.success;
+                        CharSequence text = response.body().message;
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
-                        System.out.println("! "+Respmessage.message+" !");
-                       //  RespMessage respmessage = gson.fromJson(response.body().toString(),RespMessage.class);
+                       // RespMessage respmessage = gson.fromJson(response.body().toString(),RespMessage.class);
 
                         /*s = response.body().toString();
                         System.out.println(s);

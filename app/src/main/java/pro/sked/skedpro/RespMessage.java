@@ -10,8 +10,9 @@ public class RespMessage {
     @SerializedName("success")
     public String success;
 
-    @SerializedName("message")
+   // @SerializedName("message")
     public String message;
+/*
 
     public String getSuccess(){
         return success;
@@ -20,5 +21,6 @@ public class RespMessage {
     public String getMessage() {
         return message;
     }
+*/
 
 }
