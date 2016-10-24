@@ -4,12 +4,12 @@ package pro.sked.skedpro;
  * Created by Bondint on 24.10.2016.
  */
 
-public class jsItemLst {
+public class JsItemLst {
 
     String user_name, items, created_at;
     int id, counts;
 
-    public jsItemLst(Integer id, String user_name, String items, Integer counts,  String created_at){
+    public JsItemLst(Integer id, String user_name, String items, Integer counts, String created_at){
         super();
         this.id = id;
         this.user_name = user_name;
