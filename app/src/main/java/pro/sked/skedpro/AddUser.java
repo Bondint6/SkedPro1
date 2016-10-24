@@ -2,17 +2,16 @@ package pro.sked.skedpro;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,20 +32,20 @@ public class AddUser extends Activity {
     private    EditText Login;
     private    EditText Password;
     private    EditText Email;
-
+    String s;
     private final String URL = "http://sked.pro/";
 
     private Gson gson = new GsonBuilder().create();
     private Retrofit retrofit = new Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(URL)
             .build();
 
     private Link intf = retrofit.create(Link.class);
 
 
+    RespMessage Respmessage = new RespMessage();
 
-    //private static final String TAG_SUCCESS = "success";
 
 
     @Override
@@ -65,24 +64,73 @@ public class AddUser extends Activity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> mapJson = new HashMap<String, String>();
+
+                Call<RespMessage> call = intf.CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
+                call.enqueue(new Callback<RespMessage>() {
+                    @Override
+                    public void onFailure(Call<RespMessage> call, Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call<RespMessage> call, Response<RespMessage> response) {
+
+
+                        Context context = getApplicationContext();
+                        CharSequence text = Respmessage.success;
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        System.out.println("! "+Respmessage.message+" !");
+                       //  RespMessage respmessage = gson.fromJson(response.body().toString(),RespMessage.class);
+
+                        /*s = response.body().toString();
+                        System.out.println(s);
+                        if (s.equals("{=true}")) {
+                            Context context = getApplicationContext();
+                            CharSequence text = "User is created!";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }*/
+
+                    }
+                });
+
+
+               // System.out.println();
+
+                /*Map<String, String> mapJson = new HashMap<String, String>();
                 mapJson.put("login", Login.getText().toString());
                 mapJson.put("password", Password.getText().toString());
                 mapJson.put("email", Email.getText().toString());
-                mapJson.put("name", "");
+                mapJson.put("name", "Bondint_test");
 
                 Call<Object> call = intf.CreateUser(mapJson);
                 call.enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
-                    // Get result  from response.body()
+
+                        RespMessage addUser = gson.fromJson(response.body().toString(),RespMessage.class);
+                        //jsNewUser jsNewUser = gson.fromJson(response.body().toString(), pro.sked.skedpro.jsNewUser.class);
+
+                        Map<String, String> map  =  gson.fromJson(response.body().toString(),Map.class);
+
+                        for (Map.Entry e : map.entrySet())
+                        {
+                            System.out.println(e.getKey()+" "+ e.getValue());
+                        }
+
+
                     }
                     @Override
                     public void onFailure(Call<Object> call, Throwable t) {
                         
                     }
                 });
-/*
+
                 Call<Object> call = intf.CreateUser(mapJson);
 
                 try {
