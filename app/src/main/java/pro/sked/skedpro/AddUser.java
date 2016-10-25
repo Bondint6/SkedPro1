@@ -10,14 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Bondint on 21.10.2016.
@@ -33,18 +30,20 @@ public class AddUser extends Activity {
     private    EditText Password;
     private    EditText Email;
     String s;
-    private final String URL = "http://sked.pro/";
-
-    private Gson gson = new GsonBuilder().create();
-    private Retrofit retrofit = new Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl(URL)
-            .build();
-
-    private Link intf = retrofit.create(Link.class);
+//    private final String URL = "http://sked.pro/";
+//
+////    private Gson gson = new GsonBuilder().create();
+////    private Retrofit retrofit = new Retrofit.Builder()
+////            .addConverterFactory(GsonConverterFactory.create(gson))
+////            .baseUrl(URL)
+////            .build();
+////
+////    private Link intf = retrofit.create(Link.class);
 
 
     RespMessage Respmessage = new RespMessage();
+
+    private  SkedProAPIService service = SkedProAPIService.getInstance();
 
 
 
@@ -65,7 +64,7 @@ public class AddUser extends Activity {
             @Override
             public void onClick(View v) {
 
-                Call<RespMessage> call = intf.CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
+                Call<RespMessage> call = service.api.CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
                 call.enqueue(new Callback <RespMessage>() {
                     @Override
                     public void onFailure(Call<RespMessage> call, Throwable t) {
