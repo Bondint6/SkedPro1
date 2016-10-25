@@ -1,8 +1,11 @@
 package pro.sked.skedpro;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -16,5 +19,6 @@ public interface Link {
     @POST("/create_user.php")
    // Call<Object> CreateUser (@FieldMap Map<String, String> map);
     Call<RespMessage> CreateUser(@Field("login") String login, @Field("password") String password, @Field("email") String email, @Field("name") String name);
-
+    @GET("get_user.php")
+    Call <SkedProResponse<String>> getUserInfo();
 }

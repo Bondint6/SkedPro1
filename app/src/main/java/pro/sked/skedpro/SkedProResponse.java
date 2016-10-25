@@ -3,16 +3,15 @@ package pro.sked.skedpro;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Bondint on 24.10.2016.
+ * Created by daemmon on 10/25/16.
  */
 
-public class RespMessage {
+public class SkedProResponse <T> {
+
     @SerializedName("success")
     public String success;
 
-   // @SerializedName("message")
-    public String message;
+    //@SerializedName("object")
+    public T object;
 
 }
-
-

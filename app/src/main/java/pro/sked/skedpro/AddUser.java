@@ -50,6 +50,20 @@ public class AddUser extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Call<SkedProResponse<String>> call = service.getApi().getUserInfo();
+        call.enqueue(new Callback<SkedProResponse<String>>() {
+            @Override
+            public void onResponse(Call<SkedProResponse<String>> call, Response<SkedProResponse<String>> response) {
+                SkedProResponse<String> responseObject = response.
+            }
+
+            @Override
+            public void onFailure(Call<SkedProResponse<String>> call, Throwable t) {
+
+            }
+        });
+
         setContentView(R.layout.add_user);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -64,7 +78,7 @@ public class AddUser extends Activity {
             @Override
             public void onClick(View v) {
 
-                Call<RespMessage> call = service.api.CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
+                Call<RespMessage> call = service.getApi().CreateUser(Login.getText().toString(),Password.getText().toString(),Email.getText().toString(),"Test");
                 call.enqueue(new Callback <RespMessage>() {
                     @Override
                     public void onFailure(Call<RespMessage> call, Throwable t) {

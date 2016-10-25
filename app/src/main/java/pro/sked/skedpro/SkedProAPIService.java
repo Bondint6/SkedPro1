@@ -13,7 +13,7 @@ public class SkedProAPIService {
 
     private static SkedProAPIService instance = null;
 
-    public Link api = null;
+    private Link api = null;
 
     private final String URL = "http://sked.pro/";
 
@@ -34,5 +34,10 @@ public class SkedProAPIService {
                 .baseUrl(URL)
                 .build();
         api =  retrofit.create(Link.class);
+    }
+
+    public Link getApi()
+    {
+        return api;
     }
 }
