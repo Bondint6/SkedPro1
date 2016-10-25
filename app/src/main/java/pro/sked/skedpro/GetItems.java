@@ -11,7 +11,7 @@ public class GetItems {
     public String user;
 
     @SerializedName("items")
-    public String item;
+    public String items;
 
     @SerializedName("counts")
     public String counts;

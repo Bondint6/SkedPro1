@@ -12,15 +12,5 @@ public class RespMessage {
 
    // @SerializedName("message")
     public String message;
-/*
-
-    public String getSuccess(){
-        return success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-*/
 
 }
