@@ -75,15 +75,17 @@ public class AddUser extends Activity {
                     @Override
                     public void onResponse(Call<RespMessage> call, Response<RespMessage> response) {
 
+                        if (response.body().success.equals("1")){
 
-
-                        System.out.println(" "+Respmessage.message+" ");  // REsponse  response.body().toString() -> pro.sked.skedpro.RespMessage@53701324
+                        //System.out.println(" "+Respmessage.message+" ");  // REsponse  response.body().toString() -> pro.sked.skedpro.RespMessage@53701324
                         Context context = getApplicationContext();
                         CharSequence text = response.body().message;
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
+
+                        }
                        // RespMessage respmessage = gson.fromJson(response.body().toString(),RespMessage.class);
 
                         /*s = response.body().toString();
