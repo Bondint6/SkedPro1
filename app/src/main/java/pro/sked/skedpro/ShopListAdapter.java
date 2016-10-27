@@ -48,7 +48,7 @@ import java.util.ArrayList;
         view = lInflater.inflate(R.layout.list_adapter,parent,false);
         }
         ItemLst itm = getItemLst(position);
-        ((TextView) view.findViewById(R.id.count_item)).setText(Integer.toString(itm.count));
+        ((TextView) view.findViewById(R.id.count_item)).setText(itm.count);
         ((TextView) view.findViewById(R.id.item)).setText(itm.item_name);
         ((TextView) view.findViewById(R.id.name_add)).setText(itm.add_name);
         ((TextView) view.findViewById(R.id.date_add)).setText(itm.add_date);
@@ -61,13 +61,13 @@ import java.util.ArrayList;
 
     
 
-
-    ArrayList<ItemLst> getBox() {
-        ArrayList<ItemLst> box = new ArrayList<ItemLst>();
-        for (ItemLst itm : objects) {
-            box.add(itm);
-        }
-        return box;
-    }
+//
+//    ArrayList<ItemLst> getBox() {
+//        ArrayList<ItemLst> box = new ArrayList<ItemLst>();
+//        for (ItemLst itm : objects) {
+//            box.add(itm);
+//        }
+//        return box;
+//    }
 
 }

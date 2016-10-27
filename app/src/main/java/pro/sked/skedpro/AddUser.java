@@ -3,6 +3,7 @@ package pro.sked.skedpro;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -38,10 +39,10 @@ public class AddUser extends Activity {
 ////            .baseUrl(URL)
 ////            .build();
 ////
-////    private Link intf = retrofit.create(Link.class);
+////    private Api intf = retrofit.create(Api.class);
 
 
-    RespMessage Respmessage = new RespMessage();
+   // RespMessage Respmessage = new RespMessage();
 
     private  SkedProAPIService service = SkedProAPIService.getInstance();
 
@@ -51,7 +52,7 @@ public class AddUser extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Call<SkedProResponse<String>> call = service.getApi().getUserInfo();
+       /* Call<SkedProResponse<String>> call = service.getApi().getUserInfo();
         call.enqueue(new Callback<SkedProResponse<String>>() {
             @Override
             public void onResponse(Call<SkedProResponse<String>> call, Response<SkedProResponse<String>> response) {
@@ -62,7 +63,7 @@ public class AddUser extends Activity {
             public void onFailure(Call<SkedProResponse<String>> call, Throwable t) {
 
             }
-        });
+        });*/
 
         setContentView(R.layout.add_user);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -90,7 +91,6 @@ public class AddUser extends Activity {
 
                         if (response.body().success.equals("1")){
 
-                        //System.out.println(" "+Respmessage.message+" ");  // REsponse  response.body().toString() -> pro.sked.skedpro.RespMessage@53701324
                         Context context = getApplicationContext();
                         CharSequence text = response.body().message;
                         int duration = Toast.LENGTH_SHORT;
@@ -98,22 +98,19 @@ public class AddUser extends Activity {
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
 
-                        }
-                       // RespMessage respmessage = gson.fromJson(response.body().toString(),RespMessage.class);
-
-                        /*s = response.body().toString();
-                        System.out.println(s);
-                        if (s.equals("{=true}")) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("Login", Login.getText().toString());
+                            startActivity(intent);
+                        } else {
                             Context context = getApplicationContext();
-                            CharSequence text = "User is created!";
+                            CharSequence text = response.body().message;
                             int duration = Toast.LENGTH_SHORT;
 
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
-                        }*/
-
-                    }
-                });
+                             }
+                        }
+                    });
 
 
                // System.out.println();

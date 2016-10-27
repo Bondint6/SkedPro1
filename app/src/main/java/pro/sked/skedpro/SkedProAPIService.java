@@ -13,7 +13,7 @@ public class SkedProAPIService {
 
     private static SkedProAPIService instance = null;
 
-    private Link api = null;
+    private Api api = null;
 
     private final String URL = "http://sked.pro/";
 
@@ -33,10 +33,10 @@ public class SkedProAPIService {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(URL)
                 .build();
-        api =  retrofit.create(Link.class);
+        api =  retrofit.create(Api.class);
     }
 
-    public Link getApi()
+    public Api getApi()
     {
         return api;
     }

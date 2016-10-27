@@ -10,7 +10,7 @@ public class RespMessage {
     @SerializedName("success")
     public String success;
 
-   // @SerializedName("message")
+    @SerializedName("message")
     public String message;
 
 }
