@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import java.util.ArrayList;
+
+import java.util.List;
 
 
 /**
@@ -14,57 +15,70 @@ import java.util.ArrayList;
  */
 
     public class ShopListAdapter extends BaseAdapter {
-    Context ctx;
-    LayoutInflater lInflater;
-    ArrayList<ItemLst> objects;
+    private Context ctx;
+    private LayoutInflater lInflater;
+    private List<GetItems> mItems;
 
 
-    ShopListAdapter(Context context, ArrayList<ItemLst> items)
+    ShopListAdapter(Context context, List<GetItems> items)
     {
         ctx = context;
-        objects = items;
+        mItems = items;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public int getCount() {
-        return objects.size();
+    public int getCount()
+    {
+        return mItems == null ? 0 : mItems.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return objects.get(position);
+    public Object getItem(int position)
+    {
+        return mItems.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if (view==null) {
-        view = lInflater.inflate(R.layout.list_adapter,parent,false);
+        if (view==null)
+        {
+            view = lInflater.inflate(R.layout.list_adapter,parent,false);
         }
-        ItemLst itm = getItemLst(position);
-        ((TextView) view.findViewById(R.id.count_item)).setText(itm.count);
-        ((TextView) view.findViewById(R.id.item)).setText(itm.item_name);
-        ((TextView) view.findViewById(R.id.name_add)).setText(itm.add_name);
-        ((TextView) view.findViewById(R.id.date_add)).setText(itm.add_date);
+
+        GetItems item = mItems.get(position);
+        ((TextView) view.findViewById(R.id.count_item)).setText(item.counts);
+        ((TextView) view.findViewById(R.id.item)).setText(item.create);
+        ((TextView) view.findViewById(R.id.name_add)).setText(item.user);
+        ((TextView) view.findViewById(R.id.date_add)).setText(item.create);
        return view;
     }
-    ItemLst getItemLst(int position) {
-        return ((ItemLst) getItem(position));
+
+
+    public List<GetItems> getItems()
+    {
+        return mItems;
     }
 
+    public void setmItems(List<GetItems> items)
+    {
+        mItems = items;
+        this.notifyDataSetChanged();
+    }
 
     
 
 //
 //    ArrayList<ItemLst> getBox() {
 //        ArrayList<ItemLst> box = new ArrayList<ItemLst>();
-//        for (ItemLst itm : objects) {
+//        for (ItemLst itm : mItems) {
 //            box.add(itm);
 //        }
 //        return box;

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,19 +17,18 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  SkedProAPIService service = SkedProAPIService.getInstance();
+    private SkedProAPIService service = SkedProAPIService.getInstance();
+    private ShopListAdapter shopListAdapter;
 
-    ArrayList<ItemLst> items = new ArrayList<ItemLst>();
-
-    ShopListAdapter shopListAdapter;
-
-    Date d = new Date();
-    String Login;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Login = getIntent().getStringExtra("Login");
+        shopListAdapter = new ShopListAdapter(this, null);
+        // set adapter
+        ListView shop_list = (ListView) findViewById(R.id.shop_list);
+        shop_list.setAdapter(shopListAdapter);
+        String Login = getIntent().getStringExtra("Login");
         Button btnAddItem = (Button) findViewById(R.id.add_item);
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,14 +44,8 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<GetItems>>() {
             @Override
             public void onResponse(Call<List<GetItems>> call, Response<List<GetItems>> response) {
-            List<GetItems> item = response.body();
-            System.out.println(item.get(0).items);
-               /* for (int i=0; i< response.body().size(); i++)
-                {
-                    items.add(new ItemLst(item.get(i).items,item.get(i).create,item.get(i).user,item.get(i).counts));
-                }*/
-
-
+                List<GetItems> items = response.body();
+                shopListAdapter.setmItems(items);
             }
 
             @Override
@@ -61,17 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("z");
             }
         });
-        // create adapter
-  //      fillItems();
-
-        shopListAdapter = new ShopListAdapter(this, items);
-        // set adapter
-        ListView shop_list = (ListView) findViewById(R.id.shop_list);
-        shop_list.setAdapter(shopListAdapter);
-        shopListAdapter.notifyDataSetChanged();// refresh ListView
 
     }
-
 
 
     // generic data for adapter
@@ -83,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
          }
     }
 */
+
 
 }
