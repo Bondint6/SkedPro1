@@ -35,7 +35,7 @@ public class LoginUser extends Activity {
 
         btnRegister = (Button) findViewById(R.id.AddUser);
         btnLogin =(Button) findViewById(R.id.LogIn);
-        Login = (EditText) findViewById(R.id.Login);
+        Login = (EditText) findViewById(R.id.login_edit_text);
         Password = (EditText) findViewById(R.id.Password);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
